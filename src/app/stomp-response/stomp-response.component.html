@@ -1,0 +1,42 @@
+<div class="col-md-8">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Destination</th>
+        <th>Message-id</th>
+        <th>Send/Recieve</th>
+        <th>Body preview</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let response of response">
+      <tr
+        [ngClass]="{
+          success: response.destination === '/client/v1/error',
+          info: response.destination !== '/client/v1/error'
+        }"
+      >
+        <td>{{ response.destination }}</td>
+        <td>{{ response.destination }}</td>
+        <td>{{ response.destination }}</td>
+        <td>
+          <a
+            (click)="showMessage(response.messageId)"
+            style="cursor: pointer"
+            >{{ response.messageId }}</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-4">
+  <p>Response</p>
+  <div class="form-group">
+    <textarea
+      class="form-control"
+      rows="5"
+      placeholder="Async messages will be displayed here"
+      wrap="off"
+    ></textarea>
+  </div>
+</div>
