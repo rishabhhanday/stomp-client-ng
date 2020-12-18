@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageDetails } from '../model/MessageDetails';
+
+import { StompService } from '../stomp-service.service';
 
 @Component({
   selector: 'app-stomp-response',
@@ -7,23 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StompResponseComponent implements OnInit {
   messageToDisplay: string = '';
-  response: { destination: string; messageId: string; message: string }[] = [
-    {
-      destination: '/client/v1/error',
-      messageId: 'Message cannot be delivered, attempt one',
-      message: 'this is message one',
-    },
-    {
-      destination: '/client/v1/payment',
-      messageId: 'Message cannot be delivered, attempt two',
-      message: 'this is message two',
-    },
-  ];
-  constructor() {}
+  responses: MessageDetails[] = [];
+
+  constructor(private stompService: StompService) {}
 
   showMessage(messageId: string) {
-    this.messageToDisplay = this.response[0].message;
+    const body = this.responses.find((stompResponse) => {
+      return stompResponse.messageId === messageId;
+    })?.body;
+
+    this.messageToDisplay = body ? body : 'MESSAGE-ID INVALID';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.stompService.messageRecieved.subscribe(
+      (stompResponseMessage: MessageDetails) => {
+        this.messageToDisplay = stompResponseMessage.body;
+        this.responses.push(stompResponseMessage);
+      }
+    );
+  }
 }

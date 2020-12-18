@@ -1,6 +1,6 @@
-import { unescapeIdentifier } from '@angular/compiler';
-import { Injectable } from '@angular/core';
-import { CompatClient, Stomp } from '@stomp/stompjs';
+import { Injectable, EventEmitter } from '@angular/core';
+import { CompatClient, IMessage, Stomp } from '@stomp/stompjs';
+import { MessageDetails, MessageType } from './model/MessageDetails';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +8,7 @@ import { CompatClient, Stomp } from '@stomp/stompjs';
 export class StompService {
   constructor() {}
   private client: CompatClient | undefined;
+  messageRecieved = new EventEmitter<MessageDetails>();
 
   connect(
     url: string,
@@ -24,9 +25,22 @@ export class StompService {
     });
   }
 
+  private createMessageDetails(stompResponse: IMessage): MessageDetails {
+    const headers = stompResponse.headers;
+
+    return new MessageDetails(
+      headers['message-id'],
+      headers['destination'],
+      MessageType.RESPONSE,
+      stompResponse.body
+    );
+  }
+
   subscribe(subscriptionUrl: string) {
     this.client?.subscribe(subscriptionUrl, (response) => {
-      console.log(response);
+     // console.log(this.createMessageDetails(response));
+
+      this.messageRecieved.emit(this.createMessageDetails(response));
     });
   }
 

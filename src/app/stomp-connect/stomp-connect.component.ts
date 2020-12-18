@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageDetails } from '../model/MessageDetails';
 import { StompService } from '../stomp-service.service';
 
 @Component({
@@ -7,9 +8,10 @@ import { StompService } from '../stomp-service.service';
   styleUrls: ['./stomp-connect.component.css'],
 })
 export class StompConnectComponent implements OnInit {
-  url: string = '';
-  connectHeaders: string = '';
-  subscriptions: string = '';
+  url: string = 'ws://localhost:8080/stomp';
+  connectHeaders: string = '{}';
+  subscriptions: string = '["/reply/teams"]';
+
   constructor(private stompService: StompService) {}
 
   ngOnInit(): void {}
