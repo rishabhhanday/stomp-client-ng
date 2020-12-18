@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageDetails } from '../model/MessageDetails';
 import { StompService } from '../stomp-service.service';
+import { StringBeautify } from '../util/StringBeautifyUtil';
+import { CollectionService } from './stomp-collection/service/collection-service.service';
+import { StompCollection } from './stomp-collection/service/StompCollection';
 
 @Component({
   selector: 'app-stomp-connect',
@@ -8,17 +11,33 @@ import { StompService } from '../stomp-service.service';
   styleUrls: ['./stomp-connect.component.css'],
 })
 export class StompConnectComponent implements OnInit {
-  url: string = 'ws://localhost:8080/stomp';
-  connectHeaders: string = '{}';
-  subscriptions: string = '["/reply/teams"]';
+  url: string = '';
+  connectHeaders: string = '';
+  subscriptions: string = '';
   isConnected: boolean = false;
 
-  constructor(private stompService: StompService) {}
+  constructor(
+    private stompService: StompService,
+    private collectionService: CollectionService
+  ) {}
 
   ngOnInit(): void {
     this.stompService.isConnected.subscribe((isConnected: boolean) => {
       this.isConnected = isConnected;
     });
+
+    this.collectionService.stompCollection.subscribe(
+      (collection: StompCollection) => {
+        this.url = collection.connectUrl;
+
+        this.connectHeaders = StringBeautify.beautify(
+          JSON.stringify(collection.connectHeaders)
+        );
+        this.subscriptions = StringBeautify.beautify(
+          JSON.stringify(collection.subscriptions)
+        );
+      }
+    );
   }
 
   connect() {
@@ -28,7 +47,7 @@ export class StompConnectComponent implements OnInit {
     this.stompService.connect(this.url, connectHeaders, subscriptions);
   }
 
-  disconnect(){
+  disconnect() {
     this.stompService.disconnect();
   }
 }

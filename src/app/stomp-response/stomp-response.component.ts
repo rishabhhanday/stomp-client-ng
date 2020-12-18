@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageDetails } from '../model/MessageDetails';
 
 import { StompService } from '../stomp-service.service';
+import { StringBeautify } from '../util/StringBeautifyUtil';
 
 @Component({
   selector: 'app-stomp-response',
@@ -15,17 +16,21 @@ export class StompResponseComponent implements OnInit {
   constructor(private stompService: StompService) {}
 
   showMessage(messageId: string) {
-    const body = this.responses.find((stompResponse) => {
-      return stompResponse.messageId === messageId;
-    })?.body;
+    const body =
+      this.responses.find((stompResponse) => {
+        return stompResponse.messageId === messageId;
+      })?.body + '';
 
-    this.messageToDisplay = body ? body : 'MESSAGE-ID INVALID';
+    this.messageToDisplay = StringBeautify.beautify(body);
   }
 
   ngOnInit(): void {
     this.stompService.messageRecieved.subscribe(
       (stompResponseMessage: MessageDetails) => {
-        this.messageToDisplay = stompResponseMessage.body;
+        this.messageToDisplay = StringBeautify.beautify(
+          stompResponseMessage.body
+        );
+
         this.responses.push(stompResponseMessage);
       }
     );

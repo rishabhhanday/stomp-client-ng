@@ -15,7 +15,7 @@
         }"
       >
         <td>{{ response.destination }}</td>
-        <td>{{ response.body.toString().substr(0, 6).concat(' ...') }}</td>
+        <td>{{ response.body.toString().substr(0, 6).concat(" ...") }}</td>
         <td>
           <a
             (click)="showMessage(response.messageId)"
@@ -33,6 +33,7 @@
     <textarea
       class="form-control"
       rows="5"
+      disabled
       placeholder="Async messages will be displayed here"
       wrap="off"
       [(ngModel)]="messageToDisplay"

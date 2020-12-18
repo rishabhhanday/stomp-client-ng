@@ -8,6 +8,7 @@ import { StompMessageComponent } from './stomp-message/stomp-message.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { StompResponseComponent } from './stomp-response/stomp-response.component';
+import { StompCollectionComponent } from './stomp-connect/stomp-collection/stomp-collection.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { StompResponseComponent } from './stomp-response/stomp-response.componen
     StompMessageComponent,
     HeaderComponent,
     StompResponseComponent,
+    StompCollectionComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
