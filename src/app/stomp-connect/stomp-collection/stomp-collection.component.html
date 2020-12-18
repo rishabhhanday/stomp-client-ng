@@ -27,13 +27,18 @@
             rows="5"
             placeholder="Please enter stomp collection json here."
             [(ngModel)]="collection"
+            wrap="off"
           ></textarea>
         </div>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger btn-block" (click)="importCollection()">
+        <button
+          type="button"
+          class="btn btn-danger btn-block"
+          (click)="importCollection()"
+        >
           import
         </button>
       </div>

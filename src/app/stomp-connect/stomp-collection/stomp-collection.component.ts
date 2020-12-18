@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StompService } from 'src/app/stomp-service.service';
+import { StringBeautify } from 'src/app/util/StringBeautifyUtil';
 import { CollectionService } from './service/collection-service.service';
 
 @Component({
@@ -16,6 +17,9 @@ export class StompCollectionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.collection = StringBeautify.beautify(
+      this.collectionService.getCollectionFromFile()
+    );
     this.stompService.isConnected.subscribe((isConnected: boolean) => {
       this.isConnected = isConnected;
     });

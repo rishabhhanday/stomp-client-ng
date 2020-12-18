@@ -1,0 +1,19 @@
+{
+  "connect": {
+    "url": "ws://localhost:8080/stomp",
+    "headers": {
+      "authorization": "some-secret"
+    }
+  },
+  "subscriptions": ["/reply/teams", "/reply/score"],
+  "message": {
+    "body": {
+      "teamName": "INDIA",
+      "playerName": "rishabhhanday"
+    },
+    "destination": "/game/start",
+    "headers": {
+      "message-key-1": "message-value-1"
+    }
+  }
+}

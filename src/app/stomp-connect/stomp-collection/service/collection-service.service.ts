@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { StompCollection } from './StompCollection';
+import * as collectionJson from '../../../resources/collection.json';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,9 @@ export class CollectionService {
   }
   emitCollection(stompCollection: StompCollection) {
     this.stompCollection.emit(stompCollection);
+  }
+
+  getCollectionFromFile(): string {
+    return JSON.stringify((collectionJson as any).default);
   }
 }
