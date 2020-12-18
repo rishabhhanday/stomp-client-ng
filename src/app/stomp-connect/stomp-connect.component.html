@@ -35,8 +35,22 @@
   </div>
   <div class="col-md-4">
     <br />
-    <button class="btn btn-success btn-block" (click)="connect()">Connect</button><br />
-    <button class="btn btn-danger btn-block">Disconnect</button><br />
-    <button class="btn btn-primary btn-block">Import collection</button>
+    <button
+      class="btn btn-success btn-block"
+      (click)="connect()"
+      [disabled]="isConnected"
+    >
+      Connect</button
+    ><br />
+    <button
+      class="btn btn-danger btn-block"
+      [disabled]="!isConnected"
+      (click)="disconnect()"
+    >
+      Disconnect</button
+    ><br />
+    <button class="btn btn-primary btn-block" [disabled]="isConnected">
+      Import collection
+    </button>
   </div>
 </div>

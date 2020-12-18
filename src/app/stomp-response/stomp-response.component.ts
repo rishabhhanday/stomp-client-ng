@@ -29,5 +29,10 @@ export class StompResponseComponent implements OnInit {
         this.responses.push(stompResponseMessage);
       }
     );
+
+    this.stompService.isConnected.subscribe((isConnected: boolean) => {
+      this.messageToDisplay = '';
+      this.responses = [];
+    });
   }
 }

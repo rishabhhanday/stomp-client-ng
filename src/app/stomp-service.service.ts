@@ -9,6 +9,7 @@ export class StompService {
   constructor() {}
   private client: CompatClient | undefined;
   messageRecieved = new EventEmitter<MessageDetails>();
+  isConnected = new EventEmitter<boolean>();
 
   connect(
     url: string,
@@ -19,6 +20,8 @@ export class StompService {
 
     this.client = Stomp.client(url);
     this.client.connect(connectHeaders, () => {
+      this.isConnected.emit(true);
+
       subsciptions.forEach((subscription) => {
         this.subscribe(subscription);
       });
@@ -38,8 +41,6 @@ export class StompService {
 
   subscribe(subscriptionUrl: string) {
     this.client?.subscribe(subscriptionUrl, (response) => {
-     // console.log(this.createMessageDetails(response));
-
       this.messageRecieved.emit(this.createMessageDetails(response));
     });
   }
@@ -53,6 +54,8 @@ export class StompService {
   }
 
   disconnect() {
-    this.client?.disconnect();
+    this.client?.disconnect(() => {
+      this.isConnected.emit(false);
+    });
   }
 }

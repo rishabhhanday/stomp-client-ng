@@ -31,7 +31,11 @@
         [(ngModel)]="destination"
       />
     </div>
-    <button class="btn btn-success btn-block" (click)="publish()">
+    <button
+      class="btn btn-success btn-block"
+      (click)="publish()"
+      [disabled]="!isConnected"
+    >
       Publish</button
     ><br />
   </div>

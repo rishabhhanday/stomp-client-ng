@@ -10,10 +10,15 @@ export class StompMessageComponent implements OnInit {
   destination: string = '';
   messageHeaders: string = '{}';
   messageBody = '{}';
+  isConnected: boolean = false;
 
   constructor(private stompService: StompService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.stompService.isConnected.subscribe((isConnected: boolean) => {
+      this.isConnected = isConnected;
+    });
+  }
 
   publish() {
     const messageHeaders = JSON.parse(this.messageHeaders);
