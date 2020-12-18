@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { StompCollection } from './StompCollection';
-import * as collectionJson from '../../../resources/collection.json';
+import * as collectionJson from '../../../../resources/collection.json';
 
 @Injectable({
   providedIn: 'root',
