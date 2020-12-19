@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { CompatClient, IMessage, Stomp } from '@stomp/stompjs';
-import { MessageDetails, MessageType } from './model/MessageDetails';
+import { CompatClient, IFrame, IMessage, Stomp } from '@stomp/stompjs';
+import { error } from 'protractor';
+import { MessageDetails, MessageType } from '../model/MessageDetails';
 
 @Injectable({
   providedIn: 'root',
@@ -16,16 +17,23 @@ export class StompService {
     connectHeaders: { [key: string]: any },
     subsciptions: string[]
   ) {
-    console.log(url, connectHeaders, subsciptions);
-
     this.client = Stomp.client(url);
-    this.client.connect(connectHeaders, () => {
-      this.isConnected.emit(true);
 
-      subsciptions.forEach((subscription) => {
-        this.subscribe(subscription);
-      });
-    });
+    this.client.connect(
+      connectHeaders,
+      () => {
+        this.isConnected.emit(true);
+
+        subsciptions.forEach((subscription) => {
+          this.subscribe(subscription);
+        });
+      },
+      (errorFrame: IFrame) => {
+        this.isConnected.emit(false);
+        console.log(errorFrame);
+        throw new Error(errorFrame.headers['message']);
+      }
+    );
   }
 
   private createMessageDetails(stompResponse: IMessage): MessageDetails {

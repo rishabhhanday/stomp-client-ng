@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageDetails } from '../model/MessageDetails';
-
-import { StompService } from '../stomp-service.service';
+import { StompService } from '../service/stomp-service.service';
 import { StringBeautify } from '../util/StringBeautifyUtil';
 
 @Component({

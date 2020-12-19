@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { StompService } from 'src/app/stomp-service.service';
+import { StompService } from 'src/app/service/stomp-service.service';
+
 import { StringBeautify } from 'src/app/util/StringBeautifyUtil';
-import { CollectionService } from './service/collection-service.service';
+import { CollectionService } from '../../service/collection-service.service';
 
 @Component({
   selector: 'app-stomp-collection',

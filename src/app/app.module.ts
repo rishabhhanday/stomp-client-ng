@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { StompResponseComponent } from './stomp-response/stomp-response.component';
 import { StompCollectionComponent } from './stomp-connect/stomp-collection/stomp-collection.component';
+import { GlobalErrorHandlerService } from './service/global-error-handler.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,12 @@ import { StompCollectionComponent } from './stomp-connect/stomp-collection/stomp
     StompCollectionComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerService,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
