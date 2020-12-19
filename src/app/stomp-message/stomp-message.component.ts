@@ -3,7 +3,7 @@ import { StompService } from '../service/stomp-service.service';
 import { CollectionService } from '../service/collection-service.service';
 import { StompCollection } from '../model/StompCollection';
 
-import { StringBeautify } from '../util/StringBeautifyUtil';
+import { JSONUtil } from '../util/JSONUtil';
 
 @Component({
   selector: 'app-stomp-message',
@@ -29,10 +29,10 @@ export class StompMessageComponent implements OnInit {
     this.collectionService.stompCollection.subscribe(
       (collection: StompCollection) => {
         this.destination = collection.messageDestination;
-        this.messageHeaders = StringBeautify.beautify(
+        this.messageHeaders = JSONUtil.beautify(
           JSON.stringify(collection.messageHeaders)
         );
-        this.messageBody = StringBeautify.beautify(
+        this.messageBody = JSONUtil.beautify(
           JSON.stringify(collection.messageBody)
         );
       }

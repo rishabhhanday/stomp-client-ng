@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StompService } from '../service/stomp-service.service';
 
-import { StringBeautify } from '../util/StringBeautifyUtil';
+import { JSONUtil } from '../util/JSONUtil';
 import { CollectionService } from '../service/collection-service.service';
 import { StompCollection } from '../model/StompCollection';
 
@@ -30,10 +30,10 @@ export class StompConnectComponent implements OnInit {
       (collection: StompCollection) => {
         this.url = collection.connectUrl;
 
-        this.connectHeaders = StringBeautify.beautify(
+        this.connectHeaders = JSONUtil.beautify(
           JSON.stringify(collection.connectHeaders)
         );
-        this.subscriptions = StringBeautify.beautify(
+        this.subscriptions = JSONUtil.beautify(
           JSON.stringify(collection.subscriptions)
         );
       }

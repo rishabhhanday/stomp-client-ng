@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageDetails } from '../model/MessageDetails';
 import { StompService } from '../service/stomp-service.service';
-import { StringBeautify } from '../util/StringBeautifyUtil';
+import { JSONUtil } from '../util/JSONUtil';
 
 @Component({
   selector: 'app-stomp-response',
@@ -20,13 +20,13 @@ export class StompResponseComponent implements OnInit {
         return stompResponse.messageId === messageId;
       })?.body + '';
 
-    this.messageToDisplay = StringBeautify.beautify(body);
+    this.messageToDisplay = JSONUtil.beautify(body);
   }
 
   ngOnInit(): void {
     this.stompService.messageRecieved.subscribe(
       (stompResponseMessage: MessageDetails) => {
-        this.messageToDisplay = StringBeautify.beautify(
+        this.messageToDisplay = JSONUtil.beautify(
           stompResponseMessage.body
         );
 
