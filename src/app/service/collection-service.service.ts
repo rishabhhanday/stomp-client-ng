@@ -33,7 +33,11 @@ export class CollectionService {
     this.stompCollection.emit(stompCollection);
   }
 
-  getCollectionFromFile(): string {
-    return JSON.stringify((collectionJson as any).default);
+  getCollection(collectionName: string): string {
+    return JSON.stringify((collectionJson as any).default[collectionName]);
+  }
+
+  getCollectionNames(): string[] {
+    return Object.keys((collectionJson as any).default);
   }
 }

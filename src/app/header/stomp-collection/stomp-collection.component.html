@@ -1,0 +1,63 @@
+<ul class="nav navbar-nav navbar-right">
+  <li>
+    <a style="cursor: pointer" data-toggle="modal" data-target="#myModal"
+      >Import Collection
+      <span class="glyphicon glyphicon glyphicon-import"></span>
+    </a>
+  </li>
+</ul>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Import Collection</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3">
+            <p>Saved Collections</p>
+            <ul *ngFor="let collectionName of collectionNames">
+              <li>
+                <a
+                  style="cursor: pointer"
+                  (click)="displayCollection(collectionName)"
+                  >{{ collectionName }}</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-9">
+            <div class="form-group">
+              <textarea
+                class="form-control"
+                rows="5"
+                placeholder="Please enter stomp collection json here or choose from collection list."
+                [(ngModel)]="collection"
+                wrap="off"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger btn-block"
+          (click)="importCollection()"
+        >
+          import
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
