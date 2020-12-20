@@ -8,7 +8,7 @@ import { StompMessageComponent } from './stomp-message/stomp-message.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { StompResponseComponent } from './stomp-response/stomp-response.component';
-import { StompCollectionComponent } from './stomp-connect/stomp-collection/stomp-collection.component';
+import { StompCollectionComponent } from './header/stomp-collection/stomp-collection.component';
 import { GlobalErrorHandlerService } from './service/global-error-handler.service';
 
 @NgModule({

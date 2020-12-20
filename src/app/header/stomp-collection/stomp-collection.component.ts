@@ -12,6 +12,7 @@ import { CollectionService } from '../../service/collection-service.service';
 export class StompCollectionComponent implements OnInit {
   isConnected: boolean = false;
   collection: string = '';
+  collectionNames: string[] = [];
   constructor(
     private stompService: StompService,
     private collectionService: CollectionService
@@ -19,11 +20,19 @@ export class StompCollectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.collection = JSONUtil.beautify(
-      this.collectionService.getCollectionFromFile()
+      this.collectionService.getCollection('template')
     );
     this.stompService.isConnected.subscribe((isConnected: boolean) => {
       this.isConnected = isConnected;
     });
+
+    this.collectionNames = this.collectionService.getCollectionNames();
+  }
+
+  displayCollection(collectionName: string) {
+    this.collection = JSONUtil.beautify(
+      this.collectionService.getCollection(collectionName)
+    );
   }
 
   importCollection() {
