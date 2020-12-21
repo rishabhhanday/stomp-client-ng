@@ -1,6 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { CompatClient, IFrame, IMessage, Stomp } from '@stomp/stompjs';
-import { error } from 'protractor';
 import { MessageDetails, MessageType } from '../model/MessageDetails';
 
 @Injectable({
