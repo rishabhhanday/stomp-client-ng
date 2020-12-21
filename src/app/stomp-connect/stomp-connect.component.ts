@@ -41,8 +41,10 @@ export class StompConnectComponent implements OnInit {
   }
 
   connect() {
-    const connectHeaders = JSON.parse(this.connectHeaders);
-    const subscriptions = JSON.parse(this.subscriptions);
+    const connectHeaders =
+      this.connectHeaders === '' ? {} : JSON.parse(this.connectHeaders);
+    const subscriptions =
+      this.subscriptions === '' ? [] : JSON.parse(this.subscriptions);
 
     this.stompService.connect(this.url, connectHeaders, subscriptions);
   }
