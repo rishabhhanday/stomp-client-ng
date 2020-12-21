@@ -76,17 +76,6 @@ message. The frame body contains the contents of the message
 2. ERROR -the server can send the client an ERROR frame and
 disconnect the client for any specific reason.
 
-## How to run and play with application 
-##### Steps
-1. npm install
-2. npm start
-
-
-OR 
-
-Simply open the index.html in root folder
-
-
 ##### Below are the references . 
 1. https://www.notion.so/HTTPS-for-Spring-boot-application-d729e13114374922af9693cd17ebccee
 1. https://www.notion.so/STOMP-3b52b0d3f43b4785884997caddedfd8b
