@@ -44,5 +44,7 @@ export class StompCollectionComponent implements OnInit {
   importCollection(collection: HTMLTextAreaElement) {
     this.collectionService.addCollection(collection.value);
     this.collectionNames = this.collectionService.getCollectionNames();
+
+    alert('Collection successfully added. Please check saved collection to use.')
   }
 }
