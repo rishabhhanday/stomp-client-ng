@@ -48,8 +48,8 @@ export class CollectionService {
   addCollection(collectionToAdd: string) {
     const collection = JSON.parse(collectionToAdd);
 
-    this.collections[Object.keys(collection)[0]] =
-      collection[Object.keys(collection)[0]];
-    console.log(this.collections);
+    Object.keys(collection).forEach((collectionName) => {
+      this.collections[collectionName] = collection[collectionName];
+    });
   }
 }
