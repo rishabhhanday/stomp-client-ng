@@ -6,7 +6,11 @@ import * as collectionJson from '../../resources/collection.json';
   providedIn: 'root',
 })
 export class CollectionService {
-  constructor() {}
+  collections: any = {};
+  constructor() {
+    this.collections = (collectionJson as any).default;
+    console.log(this.collections);
+  }
 
   stompCollection = new EventEmitter<StompCollection>();
 
@@ -34,10 +38,18 @@ export class CollectionService {
   }
 
   getCollection(collectionName: string): string {
-    return JSON.stringify((collectionJson as any).default[collectionName]);
+    return JSON.stringify(this.collections[collectionName]);
   }
 
   getCollectionNames(): string[] {
-    return Object.keys((collectionJson as any).default);
+    return Object.keys(this.collections);
+  }
+
+  addCollection(collectionToAdd: string) {
+    const collection = JSON.parse(collectionToAdd);
+
+    this.collections[Object.keys(collection)[0]] =
+      collection[Object.keys(collection)[0]];
+    console.log(this.collections);
   }
 }

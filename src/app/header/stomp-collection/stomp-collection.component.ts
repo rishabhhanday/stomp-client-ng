@@ -35,9 +35,14 @@ export class StompCollectionComponent implements OnInit {
     );
   }
 
-  importCollection() {
+  emitCollection() {
     this.collectionService.emitCollection(
       this.collectionService.parseCollection(this.collection)
     );
+  }
+
+  importCollection(collection: HTMLTextAreaElement) {
+    this.collectionService.addCollection(collection.value);
+    this.collectionNames = this.collectionService.getCollectionNames();
   }
 }
