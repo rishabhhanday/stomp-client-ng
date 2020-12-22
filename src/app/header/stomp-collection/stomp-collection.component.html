@@ -1,14 +1,64 @@
 <ul class="nav navbar-nav navbar-right">
   <li>
-    <a style="cursor: pointer" data-toggle="modal" data-target="#myModal"
+    <a
+      style="cursor: pointer"
+      data-toggle="modal"
+      data-target="#importCollectionModal"
       >Import Collection
+      <span class="glyphicon glyphicon glyphicon-import"></span>
+    </a>
+  </li>
+  <li>
+    <a
+      style="cursor: pointer"
+      data-toggle="modal"
+      data-target="#savedCollectionModal"
+      >Saved Collection
       <span class="glyphicon glyphicon glyphicon-import"></span>
     </a>
   </li>
 </ul>
 
-<!-- The Modal -->
-<div class="modal" id="myModal">
+<!-- The import collection modal -->
+<div class="modal" id="importCollectionModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Import Collection</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            rows="5"
+            placeholder="Please enter stomp collection json here."
+            #collectionJsonToImport
+            wrap="off"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger btn-block"
+          (click)="importCollection(collectionJsonToImport)"
+        >
+          import
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- The saved collection modal -->
+<div class="modal" id="savedCollectionModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- Modal Header -->
@@ -53,7 +103,7 @@
         <button
           type="button"
           class="btn btn-danger btn-block"
-          (click)="importCollection()"
+          (click)="emitCollection()"
         >
           import
         </button>
