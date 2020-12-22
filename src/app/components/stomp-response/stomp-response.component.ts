@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageDetails } from '../model/MessageDetails';
-import { StompService } from '../service/stomp-service.service';
-import { JSONUtil } from '../util/JSONUtil';
+import { MessageDetails } from 'src/app/model/MessageDetails';
+import { StompService } from 'src/app/service/stomp-service.service';
+import { JSONUtil } from 'src/app/util/JSONUtil';
 
 @Component({
   selector: 'app-stomp-response',
@@ -26,9 +26,7 @@ export class StompResponseComponent implements OnInit {
   ngOnInit(): void {
     this.stompService.messageRecieved.subscribe(
       (stompResponseMessage: MessageDetails) => {
-        this.messageToDisplay = JSONUtil.beautify(
-          stompResponseMessage.body
-        );
+        this.messageToDisplay = JSONUtil.beautify(stompResponseMessage.body);
 
         this.responses.push(stompResponseMessage);
       }

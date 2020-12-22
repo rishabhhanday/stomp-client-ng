@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { StompService } from '../service/stomp-service.service';
-import { CollectionService } from '../service/collection-service.service';
-import { StompCollection } from '../model/StompCollection';
-
-import { JSONUtil } from '../util/JSONUtil';
+import { StompCollection } from 'src/app/model/StompCollection';
+import { CollectionService } from 'src/app/service/collection-service.service';
+import { StompService } from 'src/app/service/stomp-service.service';
+import { JSONUtil } from 'src/app/util/JSONUtil';
 
 @Component({
   selector: 'app-stomp-message',

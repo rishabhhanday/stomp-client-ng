@@ -3,13 +3,13 @@ import { ErrorHandler, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StompConnectComponent } from './stomp-connect/stomp-connect.component';
-import { StompMessageComponent } from './stomp-message/stomp-message.component';
-import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
-import { StompResponseComponent } from './stomp-response/stomp-response.component';
-import { StompCollectionComponent } from './header/stomp-collection/stomp-collection.component';
 import { GlobalErrorHandlerService } from './service/global-error-handler.service';
+import { StompConnectComponent } from './components/stomp-connect/stomp-connect.component';
+import { StompMessageComponent } from './components/stomp-message/stomp-message.component';
+import { HeaderComponent } from './components/header/header.component';
+import { StompCollectionComponent } from './components/header/stomp-collection/stomp-collection.component';
+import { StompResponseComponent } from './components/stomp-response/stomp-response.component';
 
 @NgModule({
   declarations: [

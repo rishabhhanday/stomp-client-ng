@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CollectionService } from 'src/app/service/collection-service.service';
 import { StompService } from 'src/app/service/stomp-service.service';
 
 import { JSONUtil } from 'src/app/util/JSONUtil';
-import { CollectionService } from '../../service/collection-service.service';
 
 @Component({
   selector: 'app-stomp-collection',
@@ -45,6 +45,8 @@ export class StompCollectionComponent implements OnInit {
     this.collectionService.addCollection(collection.value);
     this.collectionNames = this.collectionService.getCollectionNames();
 
-    alert('Collection successfully added. Please check saved collection to use.')
+    alert(
+      'Collection successfully added. Please check saved collection to use.'
+    );
   }
 }
