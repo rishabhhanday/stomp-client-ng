@@ -7,8 +7,9 @@
         <th>Message-id</th>
       </tr>
     </thead>
-    <tbody *ngFor="let response of responses">
+    <tbody>
       <tr
+        *ngFor="let response of responses"
         [ngClass]="{
           success: response.destination === '/client/v1/error',
           info: response.destination !== '/client/v1/error'

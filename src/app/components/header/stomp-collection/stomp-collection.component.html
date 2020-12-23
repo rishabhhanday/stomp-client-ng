@@ -74,8 +74,8 @@
         <div class="row">
           <div class="col-md-3">
             <p>Saved Collections</p>
-            <ul *ngFor="let collectionName of collectionNames">
-              <li>
+            <ul>
+              <li *ngFor="let collectionName of collectionNames">
                 <a
                   style="cursor: pointer"
                   (click)="displayCollection(collectionName)"
