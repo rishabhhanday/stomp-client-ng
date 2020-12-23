@@ -14,11 +14,8 @@ export class StompResponseComponent implements OnInit {
 
   constructor(private stompService: StompService) {}
 
-  showMessage(messageId: string) {
-    const body =
-      this.responses.find((stompResponse) => {
-        return stompResponse.messageId === messageId;
-      })?.body + '';
+  showMessage(index: number) {
+    const body = this.responses[index].body;
 
     this.messageToDisplay = JSONUtil.beautify(body);
   }

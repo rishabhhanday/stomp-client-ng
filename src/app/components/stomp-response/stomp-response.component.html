@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let response of responses"
+        *ngFor="let response of responses; let i = index"
         [ngClass]="{
           success: response.destination === '/client/v1/error',
           info: response.destination !== '/client/v1/error'
@@ -19,7 +19,7 @@
         <td>{{ response.body.toString().substr(0, 6).concat(" ...") }}</td>
         <td>
           <a
-            (click)="showMessage(response.messageId)"
+            (click)="showMessage(i)"
             style="cursor: pointer"
             >{{ response.messageId }}</a
           >
