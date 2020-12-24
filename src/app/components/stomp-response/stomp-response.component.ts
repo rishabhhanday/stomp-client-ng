@@ -15,10 +15,11 @@ export class StompResponseComponent implements OnInit {
 
   constructor(private stompService: StompService) {}
 
-  showMessage(index: number) {
-    const body = this.responses[index].body;
-
-    this.messageToDisplay = JSONUtil.beautify(body);
+  showMessage(messageId: string) {
+    this.messageToDisplay = JSONUtil.beautify(
+      this.responses.find((response) => response.messageId === messageId)!
+        .body + ''
+    );
   }
 
   ngOnInit(): void {

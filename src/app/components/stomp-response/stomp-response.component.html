@@ -1,5 +1,4 @@
 <div class="col-md-8">
-  <input type="text" [(ngModel)]="filterByDestination" />
   <table class="table table-condensed">
     <thead>
       <tr>
@@ -11,8 +10,7 @@
     <tbody>
       <tr
         *ngFor="
-          let response of responses | filterByDestination: filterByDestination;
-          let i = index
+          let response of responses | filterByDestination: filterByDestination
         "
         [ngClass]="{
           success: response.destination === '/client/v1/error',
@@ -22,9 +20,11 @@
         <td>{{ response.destination }}</td>
         <td>{{ response.body.toString().substr(0, 6).concat(" ...") }}</td>
         <td>
-          <a (click)="showMessage(i)" style="cursor: pointer">{{
-            response.messageId
-          }}</a>
+          <a
+            (click)="showMessage(response.messageId)"
+            style="cursor: pointer"
+            >{{ response.messageId }}</a
+          >
         </td>
       </tr>
     </tbody>
@@ -40,6 +40,13 @@
       placeholder="Async messages will be displayed here"
       wrap="off"
       [(ngModel)]="messageToDisplay"
-    ></textarea>
+    ></textarea
+    ><br />
+    <input
+      type="text"
+      [(ngModel)]="filterByDestination"
+      class="form-control"
+      placeholder="Enter destination to filter responses"
+    />
   </div>
 </div>
