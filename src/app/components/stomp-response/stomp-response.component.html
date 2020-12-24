@@ -1,52 +1,55 @@
-<div class="col-md-8">
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>Destination</th>
-        <th>Body preview</th>
-        <th>Message-id</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="
-          let response of responses | filterByDestination: destinationToFilter
-        "
-        [ngClass]="{
-          success: response.destination === '/client/v1/error',
-          info: response.destination !== '/client/v1/error'
-        }"
-      >
-        <td>{{ response.destination }}</td>
-        <td>{{ response.body.toString().substr(0, 6).concat(" ...") }}</td>
-        <td>
-          <a
-            (click)="showMessage(response.messageId)"
-            style="cursor: pointer"
-            >{{ response.messageId }}</a
-          >
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="col-md-4">
-  <p>Response</p>
-  <div class="form-group">
-    <textarea
-      class="form-control"
-      rows="5"
-      disabled
-      placeholder="Async messages will be displayed here"
-      wrap="off"
-      [(ngModel)]="messageToDisplay"
-    ></textarea
-    ><br />
-    <input
-      type="text"
-      [(ngModel)]="destinationToFilter"
-      class="form-control"
-      placeholder="Enter destination to filter responses"
-    />
+<p>Response received on subscriptions channel will be shown below.</p>
+<div class="row" *ngIf="responses.length != 0">
+  <div class="col-md-8">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Destination</th>
+          <th>Body preview</th>
+          <th>Message-id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let response of responses | filterByDestination: destinationToFilter
+          "
+          [ngClass]="{
+            success: response.destination === '/client/v1/error',
+            info: response.destination !== '/client/v1/error'
+          }"
+        >
+          <td>{{ response.destination }}</td>
+          <td>{{ response.body.toString().substr(0, 6).concat(" ...") }}</td>
+          <td>
+            <a
+              (click)="showMessage(response.messageId)"
+              style="cursor: pointer"
+              >{{ response.messageId }}</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <p>Async Responses</p>
+    <div class="form-group">
+      <textarea
+        class="form-control"
+        rows="5"
+        disabled
+        placeholder="Async messages will be displayed here"
+        wrap="off"
+        [(ngModel)]="messageToDisplay"
+      ></textarea
+      ><br />
+      <input
+        type="text"
+        [(ngModel)]="destinationToFilter"
+        class="form-control"
+        placeholder="Enter destination to filter responses"
+      />
+    </div>
   </div>
 </div>
