@@ -10,7 +10,7 @@
     <tbody>
       <tr
         *ngFor="
-          let response of responses | filterByDestination: filterByDestination
+          let response of responses | filterByDestination: destinationToFilter
         "
         [ngClass]="{
           success: response.destination === '/client/v1/error',
@@ -44,7 +44,7 @@
     ><br />
     <input
       type="text"
-      [(ngModel)]="filterByDestination"
+      [(ngModel)]="destinationToFilter"
       class="form-control"
       placeholder="Enter destination to filter responses"
     />
