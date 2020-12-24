@@ -11,6 +11,7 @@ import { JSONUtil } from 'src/app/util/JSONUtil';
 export class StompResponseComponent implements OnInit {
   messageToDisplay: string = '';
   responses: MessageDetails[] = [];
+  filterByDestination: string = '';
 
   constructor(private stompService: StompService) {}
 

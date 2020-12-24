@@ -10,6 +10,7 @@ import { StompMessageComponent } from './components/stomp-message/stomp-message.
 import { HeaderComponent } from './components/header/header.component';
 import { StompCollectionComponent } from './components/header/stomp-collection/stomp-collection.component';
 import { StompResponseComponent } from './components/stomp-response/stomp-response.component';
+import { FilterByDestinationPipe } from './pipes/filter-by-destination.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { StompResponseComponent } from './components/stomp-response/stomp-respon
     HeaderComponent,
     StompResponseComponent,
     StompCollectionComponent,
+    FilterByDestinationPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [

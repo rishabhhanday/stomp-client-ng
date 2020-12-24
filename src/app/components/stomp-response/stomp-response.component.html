@@ -1,4 +1,5 @@
 <div class="col-md-8">
+  <input type="text" [(ngModel)]="filterByDestination" />
   <table class="table table-condensed">
     <thead>
       <tr>
@@ -9,7 +10,10 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let response of responses; let i = index"
+        *ngFor="
+          let response of responses | filterByDestination: filterByDestination;
+          let i = index
+        "
         [ngClass]="{
           success: response.destination === '/client/v1/error',
           info: response.destination !== '/client/v1/error'
@@ -18,11 +22,9 @@
         <td>{{ response.destination }}</td>
         <td>{{ response.body.toString().substr(0, 6).concat(" ...") }}</td>
         <td>
-          <a
-            (click)="showMessage(i)"
-            style="cursor: pointer"
-            >{{ response.messageId }}</a
-          >
+          <a (click)="showMessage(i)" style="cursor: pointer">{{
+            response.messageId
+          }}</a>
         </td>
       </tr>
     </tbody>
