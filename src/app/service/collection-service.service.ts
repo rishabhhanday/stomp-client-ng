@@ -14,22 +14,16 @@ export class CollectionService {
       this.collections = JSON.parse(
         localStorage.getItem(this.LOCAL_STORAGE_SAVED_COLLECTION)!
       );
-
-      console.log(localStorage.getItem(this.LOCAL_STORAGE_SAVED_COLLECTION));
     } else {
-      console.log('local storage collection not found .');
       this.collections = (collectionJson as any).default;
 
-      localStorage.setItem(
-        this.LOCAL_STORAGE_SAVED_COLLECTION,
-        JSON.stringify(this.collections)
-      );
+      this.resetCollectionInLocalStorage();
     }
   }
 
   stompCollection = new EventEmitter<StompCollection>();
 
-  private addCollectionToLocalStorage() {
+  private resetCollectionInLocalStorage() {
     localStorage.setItem(
       this.LOCAL_STORAGE_SAVED_COLLECTION,
       JSON.stringify(this.collections)
@@ -74,6 +68,6 @@ export class CollectionService {
       this.collections[collectionName] = collection[collectionName];
     });
 
-    this.addCollectionToLocalStorage();
+    this.resetCollectionInLocalStorage();
   }
 }
