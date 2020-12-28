@@ -12,6 +12,6 @@ export class FilterByDestinationPipe implements PipeTransform {
 
     return responses
       .slice()
-      .filter((response) => response.destination === destination);
+      .filter((response) => response.destination.match(destination));
   }
 }
