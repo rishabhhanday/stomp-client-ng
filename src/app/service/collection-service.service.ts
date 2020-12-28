@@ -6,13 +6,35 @@ import * as collectionJson from '../../resources/collection.json';
   providedIn: 'root',
 })
 export class CollectionService {
+  private LOCAL_STORAGE_SAVED_COLLECTION: string = 'savedCollection';
   collections: any = {};
+
   constructor() {
-    this.collections = (collectionJson as any).default;
-    console.log(this.collections);
+    if (localStorage.getItem(this.LOCAL_STORAGE_SAVED_COLLECTION)) {
+      this.collections = JSON.parse(
+        localStorage.getItem(this.LOCAL_STORAGE_SAVED_COLLECTION)!
+      );
+
+      console.log(localStorage.getItem(this.LOCAL_STORAGE_SAVED_COLLECTION));
+    } else {
+      console.log('local storage collection not found .');
+      this.collections = (collectionJson as any).default;
+
+      localStorage.setItem(
+        this.LOCAL_STORAGE_SAVED_COLLECTION,
+        JSON.stringify(this.collections)
+      );
+    }
   }
 
   stompCollection = new EventEmitter<StompCollection>();
+
+  private addCollectionToLocalStorage() {
+    localStorage.setItem(
+      this.LOCAL_STORAGE_SAVED_COLLECTION,
+      JSON.stringify(this.collections)
+    );
+  }
 
   parseCollection(collection: string): StompCollection {
     const collectionObject = JSON.parse(collection);
@@ -51,5 +73,7 @@ export class CollectionService {
     Object.keys(collection).forEach((collectionName) => {
       this.collections[collectionName] = collection[collectionName];
     });
+
+    this.addCollectionToLocalStorage();
   }
 }
