@@ -1,6 +1,7 @@
 # StompClientNg
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+Hosted on GitHub Pages - https://rishabhhanday.github.io/stomp-client-ng/
 
 ## Development server
 
