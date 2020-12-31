@@ -70,4 +70,8 @@ export class CollectionService {
 
     this.resetCollectionInLocalStorage();
   }
+
+  getAllCollections() {
+    return this.collections;
+  }
 }

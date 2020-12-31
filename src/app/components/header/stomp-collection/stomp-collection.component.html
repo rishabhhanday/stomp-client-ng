@@ -25,7 +25,15 @@
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Import Collection</h4>
+        <h4 class="modal-title">
+          Import Collection
+          <a
+            style="cursor: pointer"
+            (click)="autofillCollection(collectionJsonToImport)"
+          >
+            <span class="glyphicon glyphicon-flash"></span>
+          </a>
+        </h4>
         <button type="button" class="close" data-dismiss="modal">
           &times;
         </button>
@@ -37,7 +45,7 @@
           <textarea
             class="form-control"
             rows="5"
-            placeholder="Please enter stomp collection json here."
+            placeholder="Please enter stomp collection json here. Click on flash icon for template JSON."
             #collectionJsonToImport
             wrap="off"
           ></textarea>

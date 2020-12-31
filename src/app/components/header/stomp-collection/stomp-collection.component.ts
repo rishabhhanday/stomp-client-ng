@@ -13,6 +13,7 @@ export class StompCollectionComponent implements OnInit {
   isConnected: boolean = false;
   collection: string = '';
   collectionNames: string[] = [];
+
   constructor(
     private stompService: StompService,
     private collectionService: CollectionService
@@ -47,6 +48,12 @@ export class StompCollectionComponent implements OnInit {
 
     alert(
       'Collection successfully added. Please check saved collection to use.'
+    );
+  }
+
+  autofillCollection(collectionEl: HTMLTextAreaElement) {
+    collectionEl.value = JSONUtil.beautify(
+      JSON.stringify(this.collectionService.getAllCollections())
     );
   }
 }
