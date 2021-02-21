@@ -10,14 +10,18 @@ export class CollectionService {
   collections: any = {};
 
   constructor() {
+    console.log('loading default collection .');
+    this.collections = (collectionJson as any).default;
+
     if (localStorage.getItem(this.LOCAL_STORAGE_SAVED_COLLECTION)) {
-      this.collections = JSON.parse(
+      console.log('collection found in localStorage. Please check saved collection to use.');
+      this.addCollection(
         localStorage.getItem(this.LOCAL_STORAGE_SAVED_COLLECTION)!
       );
     } else {
-      this.collections = (collectionJson as any).default;
-
+      console.log('no collection found in localStorage. Adding default collection to localStorage .')
       this.resetCollectionInLocalStorage();
+
     }
   }
 
