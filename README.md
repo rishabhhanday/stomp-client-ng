@@ -21,6 +21,7 @@ to perform all the below operation regarding stomp/websocket protocol .
 3. Subscribe to n number of endpoint.
 4. Publish a MESSAGE frame with n number of headers in MESSAGE frame.
 5. Debug section will help you identify the problems with connection, it'll display all the frames sent and recieved.
+5. Share and import STOMP collection with teams mates for collobration.
 
 ## Why STOMP when we already have WebSocket?
 
